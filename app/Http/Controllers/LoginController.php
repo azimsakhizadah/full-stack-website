@@ -10,8 +10,16 @@ class LoginController extends Controller
 {
     return view('login');
 }
-    public function login()
+    public function login(Request $request)
     {
-        return 'data';
+        $request->validate([
+            'name'=>'required | alpha',
+            'email'=>'required',
+            'password'=>'required'
+        ],[
+            'name.required'=>'نام خود را وارد کنید.',
+            'email.required'=> 'ایمیل خود را وارد کنید',
+            'password.required'=>'رمز خود را وارد کنید'
+        ]);
     }
 }
