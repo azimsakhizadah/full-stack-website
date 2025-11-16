@@ -21,5 +21,6 @@ class LoginController extends Controller
             'email.required'=> 'ایمیل خود را وارد کنید',
             'password.required'=>'رمز خود را وارد کنید'
         ]);
+        // فارسسی سازی ولدیشن جلسه بعدی
     }
 }
