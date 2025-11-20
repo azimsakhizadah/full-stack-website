@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
     return view('admin/index');
@@ -15,3 +19,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+route::post('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+
+route::get('/verify', [AdminController::class, 'showVerification'])->name('custom.verification.form');
+route::post('/verify', [AdminController::class, 'verificationVerify'])->name('custom.verification.verify');
