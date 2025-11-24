@@ -8,34 +8,63 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit()
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $id = Auth::user()->id;
+        $profileData = User::find($id);
+        return view('profile.edit', compact('profileData'));
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
+        $id = Auth::user()->id;
+        $data = User::find($id);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->address = $request->address;
+
+        $oldPhotoPath = $request->photo;
+
+        if ($request->hasfile('photo')) {
+            $file = $request->file('photo');
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('upload/user_images/'),$fileName);
+            $data->photo = $fileName;
+
+            if ($oldPhotoPath && $oldPhotoPath !== $fileName) {
+                $this->deleteOldImage($oldPhotoPath);
+            }
         }
 
-        $request->user()->save();
+        $data->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+       $notification = [
+        'message' => 'Profile updated successfully',
+        'alert-type' => 'success'
+        ];
+
+        return redirect()->back()->with($notification);
+
     }
+
+    private function deleteOldImage(string $oldPhotoPath): void {
+    $fullPath = public_path('upload/user_images/' . $oldPhotoPath);
+    if(file_exists($fullPath)){
+        unlink($fullPath);
+    }
+}
 
     /**
      * Delete the user's account.

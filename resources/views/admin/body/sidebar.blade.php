@@ -34,24 +34,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="#sidebarDashboards" data-bs-toggle="collapse">
-                        <i data-feather="home"></i>
-                        <span> Dashboard </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarDashboards">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="index.html" class="tp-link">Analytical</a>
-                            </li>
-                            <li>
-                                <a href="ecommerce.html" class="tp-link">E-commerce</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
 
                 <li class="menu-title">Pages</li>
 
