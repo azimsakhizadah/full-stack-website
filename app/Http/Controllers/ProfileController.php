@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
 use App\Models\User;
 
 class ProfileController extends Controller
@@ -17,59 +15,69 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $id = Auth::user()->id;
-        $profileData = User::find($id);
+        $profileData = Auth::user();
         return view('profile.edit', compact('profileData'));
     }
 
     /**
-     * Update the user's profile information.
+     * Update the user's profile and password.
      */
     public function update(Request $request)
     {
-        $id = Auth::user()->id;
-        $data = User::find($id);
+        $user = Auth::user();
 
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->phone = $request->phone;
-        $data->address = $request->address;
+        // Validation
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'old_password' => 'nullable|string',
+            'new_password' => 'nullable|string|min:6|confirmed',
+        ]);
 
-        $oldPhotoPath = $request->photo;
+        // Update profile info
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
 
-        if ($request->hasfile('photo')) {
+        // Handle photo upload
+        if ($request->hasFile('photo')) {
+            $oldPhoto = $user->photo;
             $file = $request->file('photo');
-            $fileName = time().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('upload/user_images/'),$fileName);
-            $data->photo = $fileName;
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('upload/user_images/'), $fileName);
+            $user->photo = $fileName;
 
-            if ($oldPhotoPath && $oldPhotoPath !== $fileName) {
-                $this->deleteOldImage($oldPhotoPath);
+            // Delete old photo
+            if ($oldPhoto && file_exists(public_path('upload/user_images/' . $oldPhoto))) {
+                unlink(public_path('upload/user_images/' . $oldPhoto));
             }
         }
 
-        $data->save();
+        // Handle password change
+        if ($request->filled('old_password') && $request->filled('new_password')) {
+            if (Hash::check($request->old_password, $user->password)) {
+                $user->password = Hash::make($request->new_password);
+            } else {
+                return back()->withErrors(['old_password' => 'Old password is incorrect']);
+            }
+        }
 
-       $notification = [
-        'message' => 'Profile updated successfully',
-        'alert-type' => 'success'
-        ];
+        $user->save();
 
-        return redirect()->back()->with($notification);
-
+        return redirect()->back()->with([
+            'message' => 'Profile updated successfully',
+            'alert-type' => 'success'
+        ]);
     }
-
-    private function deleteOldImage(string $oldPhotoPath): void {
-    $fullPath = public_path('upload/user_images/' . $oldPhotoPath);
-    if(file_exists($fullPath)){
-        unlink($fullPath);
-    }
-}
 
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
