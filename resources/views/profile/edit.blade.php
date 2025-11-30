@@ -40,7 +40,7 @@
                                         <div class="card-body">
 
                                             <div class="mb-3">
-                                                <label class="form-label">Name</label>
+                                                <label class="form-label">Full Name</label>
                                                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                                                     value="{{ old('name', $profileData->name) }}">
                                                 @error('name')
