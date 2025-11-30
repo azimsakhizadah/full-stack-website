@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
+use App\Models\Title;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -56,11 +57,11 @@ class SliderController extends Controller
     // edit slider via ajax
     public function EditSlider(Request $request, $id)
     {
-        $slider = Slider::findOrFail($id);  
-        if($request->has('title')){
+        $slider = Slider::findOrFail($id);
+        if ($request->has('title')) {
             $slider->title = $request->title;
         }
-        if($request->has('description')){
+        if ($request->has('description')) {
             $slider->description = $request->description;
         }
 
@@ -68,4 +69,6 @@ class SliderController extends Controller
         return response()->json(['success' => 'Slider updated successfully']);
     }
     // end method
+
+
 }

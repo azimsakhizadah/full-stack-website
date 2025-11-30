@@ -26,44 +26,44 @@ class ReviewController extends Controller
     // End method
 
 
-   public function AddReview(Request $request)
-{
-    // Validate required fields but NOT image
-    $request->validate([
-        'name'     => 'required|string|max:255',
-        'position' => 'required|string|max:255',
-        'message'  => 'required|string',
-        'image'    => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-    ]);
+    public function AddReview(Request $request)
+    {
+        // Validate required fields but NOT image
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'message'  => 'required|string',
+            'image'    => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
 
-    $save_url = null; // default if no image uploaded
+        $save_url = null; // default if no image uploaded
 
-    // If image uploaded → process it
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $manager = new ImageManager(new Driver());
+        // If image uploaded → process it
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $manager = new ImageManager(new Driver());
 
-        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
 
-        $img = $manager->read($image);
-        $img->resize(60, 60)->save(public_path('upload/review/') . $name_gen);
+            $img = $manager->read($image);
+            $img->resize(60, 60)->save(public_path('upload/review/') . $name_gen);
 
-        $save_url = 'upload/review/' . $name_gen;
+            $save_url = 'upload/review/' . $name_gen;
+        }
+
+        // Insert into DB
+        Review::create([
+            'name'     => $request->name,
+            'position' => $request->position,
+            'message'  => $request->message,
+            'image'    => $save_url, // null if no image
+        ]);
+
+        return redirect()->route('all.review')->with([
+            'message' => 'Review added successfully',
+            'alert'   => 'success'
+        ]);
     }
-
-    // Insert into DB
-    Review::create([
-        'name'     => $request->name,
-        'position' => $request->position,
-        'message'  => $request->message,
-        'image'    => $save_url, // null if no image
-    ]);
-
-    return redirect()->route('all.review')->with([
-        'message' => 'Review added successfully',
-        'alert'   => 'success'
-    ]);
-}
 
 
     // to update review

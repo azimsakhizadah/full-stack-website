@@ -56,6 +56,24 @@
                 </li>
 
                 <li>
+                    <a href="#sidebarAuth" data-bs-toggle="collapse">
+                        <i data-feather="users"></i>
+                        <span> Features </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarAuth">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.features') }}" class="tp-link">All Features</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.feature') }}" class="tp-link">Add Features</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
                     <a href="#sidebarError" data-bs-toggle="collapse">
                         <i data-feather="alert-octagon"></i>
                         <span> Slider Setup </span>
@@ -65,6 +83,23 @@
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('get.slider') }}" class="tp-link">Get slider</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+
+                <li>
+                    <a href="#sidebarError" data-bs-toggle="collapse">
+                        <i data-feather="alert-octagon"></i>
+                        <span> Clarifies Setup </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarError">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('get.clarifies') }}" class="tp-link">Get Clarify</a>
                             </li>
                         </ul>
                     </div>

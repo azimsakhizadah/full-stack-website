@@ -1,7 +1,12 @@
   <div class="lonyo-section-padding4">
     <div class="container">
       <div class="lonyo-section-title center">
-        <h2>Find answers to all questions below</h2>
+          @php
+                  use App\Models\Title;
+                  $title = Title::find(1);
+              @endphp
+              <h2 id="answers-title" contenteditable="{{ auth()->check() ? 'true' : 'false' }}"
+                  data-id="{{ $title->id }}" class="hero-title">{{ $title->answers }}</h2>
       </div>
       <div class="lonyo-faq-shape"></div>
       <div class="lonyo-faq-wrap1">
@@ -71,3 +76,38 @@
       </div>
     </div>
   </div>
+
+    {{-- csrf-token --}}
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  {{-- Answers edit script --}}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const el = document.getElementById('answers-title');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+    const updateAnswers = (value, id) => {
+        fetch(`/edit-answers/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: JSON.stringify({ answers: value })
+        })
+        .then(res => res.json())
+        .then(data => console.log('Saved:', data))
+        .catch(err => console.error('Error:', err));
+    };
+
+    el.addEventListener('blur', () => updateAnswers(el.innerText, el.dataset.id));
+    el.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            updateAnswers(el.innerText, el.dataset.id);
+            el.blur();
+        }
+    });
+});
+</script>
+
