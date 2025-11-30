@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(SliderController::class)->group(function(){
         route::get('/get/slider', 'GetSlider')->name('get.slider');
         route::post('/update/slider/{id}', 'UpdateSlider')->name('update.slider');
+        route::post('/edit-slider/{id}', 'EditSlider');
     });
 
 });
