@@ -49,25 +49,6 @@
                 <div class="lonyo-footer-menu1">
                   <ul>
                     <li>
-                      <a href="index.html">Home 01</a>
-                    </li>
-                    <li>
-                      <a href="index-02.html">Home 02</a>
-                    </li>
-                    <li>
-                      <a href="index-03.html">Home 03</a>
-                    </li>
-                    <li>
-                      <a href="about-us.html">About us</a>
-                    </li>
-                    <li>
-                      <a href="contact-us.html">Contact us</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="lonyo-footer-menu1">
-                  <ul>
-                    <li>
                       <a href="blog.html">Blog</a>
                     </li>
                     <li>
@@ -92,13 +73,13 @@
               <h4>Utility pages</h4>
               <ul>
                 <li>
-                  <a href="sign-up.html">Sign up</a>
+                  <a href="{{route('register')}}">Sign up</a>
                 </li>
                 <li>
-                  <a href="login.html">Log in</a>
+                  <a href="{{route('login')}}">Log in</a>
                 </li>
                 <li>
-                  <a href="reset-password.html">Reset password</a>
+                  <a href="{{route('password.request')}}">Reset password</a>
                 </li>
                 <li>
                   <a href="cooming-soon.html">Coming soon</a>
@@ -124,7 +105,7 @@
         <div class="lonyo-footer-shape"></div>
       </div>
       <div class="lonyo-footer-bottom-text">
-        <p>© Copyright <span id="current-year"></span>, All Rights Reserved by Mthemeus</p>
+        <p>© Copyright <span id="current-year"></span>, All Rights Reserved by Sakhizadah</p>
       </div>
     </div>
   </footer>

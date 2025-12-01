@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clarify;
+use App\Models\Usability;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -51,5 +52,41 @@ class HomeController extends Controller
 
     // end method
 
+    public function GetUsability(){
+        $usability = Usability::find(1);
+        return view('admin.backend.usability.get_usability', compact('usability'));
+    }
 
+    // update the usability
+    public function UpdateUsability(Request $request, $id)
+    {
+        $usability = Usability::findOrFail($id);
+        if ($request->file('image')) {
+            // Delete old image if exists
+            if ($usability->image && file_exists(public_path($usability->image))) {
+                unlink(public_path($usability->image));
+            }
+
+            // Process new image
+            $image = $request->file('image');
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $img = $manager->read($image)->resize(560, 400);
+            $img->save(public_path('upload/usability/' . $name_gen));
+
+            $usability->image = 'upload/usability/' . $name_gen;
+        }   
+
+        $usability->title = $request->title;
+        $usability->link = $request->link;
+        $usability->youtube = $request->youtube;
+        $usability->description = $request->description;
+        $usability->save();
+
+        return redirect()->back()->with([
+            'message' => 'Usability updated successfully',
+            'alert' => 'success'
+        ]);
+    }
+    // end method
 }
