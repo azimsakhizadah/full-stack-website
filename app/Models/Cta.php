@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Database\Eloquent\Model;
 
-class Clarify extends Model
+class Cta extends Model
 {
      protected $guarded = [];
 }

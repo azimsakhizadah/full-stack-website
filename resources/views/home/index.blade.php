@@ -8,10 +8,8 @@
 @include('home.homelayout.features')
   <!-- end content -->
 
-@include('home.homelayout.clarifies')
+@include('home.homelayout.intros')
   <!-- end content -->
-
-@include('home.homelayout.get_all')
 
   <div class="lonyo-content-shape3">
     <img src="{{ asset('frontend/assets/images/shape/shape2.svg') }}" alt="">

@@ -100,5 +100,6 @@
 
   <script src="{{ asset('frontend/assets/js/app.js') }}"></script>
 
+
 </body>
 </html>

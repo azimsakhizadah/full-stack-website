@@ -49,19 +49,16 @@
                 <div class="lonyo-footer-menu1">
                   <ul>
                     <li>
-                      <a href="blog.html">Blog</a>
+                      <a href="#">About Us</a>
                     </li>
                     <li>
-                      <a href="single-blog.html">Blog single</a>
+                      <a href="#">Contact Us</a>
                     </li>
                     <li>
-                      <a href="integration.html">Integrations</a>
+                      <a href="#">Our Team</a>
                     </li>
                     <li>
-                      <a href="single-integration.html">Integration single</a>
-                    </li>
-                    <li>
-                      <a href="pricing.html">Pricing</a>
+                      <a href="#">Our Services</a>
                     </li>
                   </ul>
                 </div>
@@ -70,22 +67,16 @@
           </div>
           <div class="col-xxl-2 col-xl-4 col-md-6">
             <div class="lonyo-footer-menu pl-30">
-              <h4>Utility pages</h4>
+              <h4>Let's Talk</h4>
               <ul>
                 <li>
-                  <a href="{{route('register')}}">Sign up</a>
+                  <a href="mailto:info@bastantech.com">info@bastantech.com</a>
                 </li>
                 <li>
-                  <a href="{{route('login')}}">Log in</a>
+                  <a href="">Kabul, Afghanistan</a>
                 </li>
                 <li>
-                  <a href="{{route('password.request')}}">Reset password</a>
-                </li>
-                <li>
-                  <a href="cooming-soon.html">Coming soon</a>
-                </li>
-                <li>
-                  <a href="error-404.html">404 Not found</a>
+                  <a href="tel:+93765078597">+93-765-078-597</a>
                 </li>
               </ul>
             </div>

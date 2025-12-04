@@ -31,8 +31,8 @@
                             <div class="col-md-7 mx-auto">
                                 <div class="mb-0 border-0 p-md-5 p-lg-0 p-4">
                                     <div class="mb-4 p-0">
-                                        <a href="index.html" class="auth-logo">
-                                            <img src="{{ asset('backend/assets/images/logo-dark.png') }}" alt="logo-dark" class="mx-auto" height="28" />
+                                        <a href="{{route('home')}}" class="auth-logo">
+                                            <img src="{{ asset('backend/assets/images/logo-dark.png') }}" alt="logo-dark" class="mx-auto" height="35" />
                                         </a>
                                     </div>
     

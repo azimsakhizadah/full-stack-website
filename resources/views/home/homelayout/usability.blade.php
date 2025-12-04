@@ -21,12 +21,12 @@
             <h2>{{ $usability->title}}</h2>
             <p>{{$usability->description}} </p>
             <div class="mt-50" data-aos="fade-up" data-aos-duration="700">
-              <a class="lonyo-default-btn video-btn" href="{{ $usability->link }}">Download the app</a>
+              <a class="lonyo-default-btn video-btn" href="{{ $usability->link }}">Our Portfolio</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-xl-4 col-md-6">
           <div class="lonyo-process-wrap" data-aos="fade-up" data-aos-duration="500">
             <div class="lonyo-process-number">
@@ -67,6 +67,6 @@
           </div>
         </div>
         <div class="border-bottom" data-aos="fade-up" data-aos-duration="500"></div>
-      </div>
+      </div> --}}
     </div>
   </div>

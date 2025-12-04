@@ -1,0 +1,49 @@
+@extends('admin.admin_master')
+@section('admin')
+    <!-- Datatables  -->
+<div class="content">
+    <div class="container-xxl">
+
+        <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+            <div class="flex-grow-1">
+                <h4 class="fs-18 fw-semibold m-0">All FAQ</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($faqs as $faq)
+                                    <tr>
+                                    <td>{{ $faq->id}}</td>
+                                    <td>{{ $faq->title}}</td>
+                                    <td>{{ Str::limit($faq->description, 30, '...') }}</td>
+                                    <td>
+                                        <a href="{{ route('edit.faq', $faq->id)}}" class="btn btn-success">Edit</a>
+                                        <a href="{{ route('delete.faq', $faq->id)}}" class="btn btn-danger" id="delete">Delete</a>
+                                        <a href="{{ route('add.faq')}}" class="btn btn-primary">Add</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+@endsection

@@ -13,12 +13,12 @@
                         <img src="{{ asset('backend/assets/images/logo-light.png') }}" alt="" height="24">
                     </span>
                 </a>
-                <a href="{{ route('dashboard')}}" class="logo logo-dark">
+                <a href="{{ route('home')}}" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('backend/assets/images/logo-dark.png') }}" alt="" height="24">
+                        <img src="{{ asset('backend/assets/images/logo-dark.png') }}" alt="" height="40">
                     </span>
                 </a>
             </div>
@@ -37,24 +37,24 @@
 
                 <li class="menu-title">Pages</li>
 
+                     {{-- Slider section --}}
                 <li>
-                    <a href="#sidebarAuth" data-bs-toggle="collapse">
-                        <i data-feather="users"></i>
-                        <span> Review Setup </span>
+                    <a href="#sidebarDashboards" data-bs-toggle="collapse">
+                        <i data-feather="alert-octagon"></i>
+                        <span> Slider Setup </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarAuth">
+                    <div class="collapse" id="sidebarDashboards">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('all.review') }}" class="tp-link">All Review</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('add.review') }}" class="tp-link">Add Review</a>
+                                <a href="{{ route('get.slider') }}" class="tp-link">Edit slider</a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
+
+                     {{-- features section --}}
                 <li>
                     <a href="#sidebarAuth" data-bs-toggle="collapse">
                         <i data-feather="users"></i>
@@ -73,63 +73,131 @@
                     </div>
                 </li>
 
+                 {{-- about us section --}}
                 <li>
                     <a href="#sidebarError" data-bs-toggle="collapse">
                         <i data-feather="alert-octagon"></i>
-                        <span> Slider Setup </span>
+                        <span> Intro Setup </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarError">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('get.slider') }}" class="tp-link">Get slider</a>
+                                <a href="{{ route('get.intro') }}" class="tp-link">Get Intro</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('all.introvalue') }}" class="tp-link">All Introvalue</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.introvalue') }}" class="tp-link">Add Introvalue</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                {{-- Our portfolio showcase --}}
+
+                <li>
+                    <a href="#sidebarBaseui" data-bs-toggle="collapse">
+                        <i data-feather="alert-octagon"></i>
+                        <span> Portfolio Setup </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarBaseui">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('get.usability') }}" class="tp-link">Edit Portfolio</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                {{-- review section --}}
+                <li>
+                    <a href="#sidebarExpages" data-bs-toggle="collapse">
+                        <i data-feather="list"></i>
+                        <span> Review Setup </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarExpages">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.review') }}" class="tp-link">All Review</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.review') }}" class="tp-link">Add Review</a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
 
-
+                 {{-- faq section --}}
                 <li>
-                    <a href="#sidebarError" data-bs-toggle="collapse">
-                        <i data-feather="alert-octagon"></i>
-                        <span> Clarifies Setup </span>
+                    <a href="#sidebarAdvancedUI" data-bs-toggle="collapse">
+                        <i data-feather="list"></i>
+                        <span> FAQ Setup </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarError">
+                    <div class="collapse" id="sidebarAdvancedUI">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('get.clarifies') }}" class="tp-link">Get Clarify</a>
+                                <a href="{{ route('all.faq') }}" class="tp-link">All FAQ</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.faq') }}" class="tp-link">Add FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                
+
+                  {{-- CTA section --}}
+                <li>
+                    <a href="#sidebarIcons" data-bs-toggle="collapse">
+                        <i data-feather="list"></i>
+                        <span> CTA Setup </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarIcons">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('get.cta') }}" class="tp-link">Get CTA</a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
+                  {{-- team memberes section --}}
                 <li>
-                    <a href="#sidebarError" data-bs-toggle="collapse">
-                        <i data-feather="alert-octagon"></i>
-                        <span> Usability Setup </span>
+                    <a href="#sidebarIcons" data-bs-toggle="collapse">
+                        <i data-feather="list"></i>
+                        <span> Team Member </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarError">
+                    <div class="collapse" id="sidebarIcons">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('get.usability') }}" class="tp-link">Get Clarify</a>
+                                <a href="{{ route('all.team') }}" class="tp-link">All Members</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.team') }}" class="tp-link">Add Members</a>
                             </li>
                         </ul>
                     </div>
                 </li>
+                
 
 
                 <li class="menu-title mt-2">General</li>
 
                 <li>
-                    <a href="#sidebarBaseui" data-bs-toggle="collapse">
+                    <a href="#sidebarAdvancedUI" data-bs-toggle="collapse">
                         <i data-feather="package"></i>
                         <span> Components </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarBaseui">
+                    <div class="collapse" id="sidebarAdvancedUI">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="ui-accordions.html" class="tp-link">Accordions</a>

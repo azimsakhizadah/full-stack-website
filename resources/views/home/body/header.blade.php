@@ -18,8 +18,8 @@
                               <li class="menu-item-has-children">
                                   <a href="#">About Us</a>
                                   <ul class="sub-menu">
-                                      <li><a href="about-us.html">Company Profile</a></li>
-                                      <li><a href="pricing.html">team</a></li>
+                                      <li><a href="{{route('about')}}">Company Profile</a></li>
+                                      <li><a href="{{route('team')}}">team</a></li>
                                   </ul>
                               </li>
                               <li>

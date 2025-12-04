@@ -10,7 +10,7 @@ use Intervention\Image\ImageManager;
 
 class FeaturesController extends Controller
 {
-        // to show all reviews
+    // to show all reviews
     public function AllFeature()
     {
         $features = Feature::all();
@@ -26,82 +26,82 @@ class FeaturesController extends Controller
     // End method
 
 
-   public function AddFeature(Request $request)
-{
-    // Validate required fields including svg
-    $request->validate([
-        'title'        => 'required|string|max:255',
-        'description'  => 'required|string',
-        'image'        => 'nullable|mimes:jpg,jpeg,png,webp,svg|max:2048',
-    ]);
+    public function AddFeature(Request $request)
+    {
+        // Validate required fields including svg
+        $request->validate([
+            'title'        => 'required|string|max:255',
+            'description'  => 'required|string',
+            'image'        => 'nullable|mimes:jpg,jpeg,png,webp,svg|max:2048',
+        ]);
 
-    $save_url = null;
+        $save_url = null;
 
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $extension = $image->getClientOriginalExtension();
-        $name_gen = hexdec(uniqid()) . '.' . $extension;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $name_gen = hexdec(uniqid()) . '.' . $extension;
 
-        // If the image is an SVG → move without processing
-        if ($extension === 'svg') {
-            $image->move(public_path('upload/features/'), $name_gen);
-        } else {
-            // Process normal images (jpg, png, webp, etc.)
-            $manager = new ImageManager(new Driver());
-            $img = $manager->read($image);
-            $img->resize(60, 60)->save(public_path('upload/features/') . $name_gen);
+            // If the image is an SVG → move without processing
+            if ($extension === 'svg') {
+                $image->move(public_path('upload/features/'), $name_gen);
+            } else {
+                // Process normal images (jpg, png, webp, etc.)
+                $manager = new ImageManager(new Driver());
+                $img = $manager->read($image);
+                $img->resize(60, 60)->save(public_path('upload/features/') . $name_gen);
+            }
+
+            $save_url = 'upload/features/' . $name_gen;
         }
 
-        $save_url = 'upload/features/' . $name_gen;
+        // Insert into DB
+        Feature::create([
+            'title'        => $request->title,
+            'description'  => $request->description,
+            'image'        => $save_url,
+        ]);
+
+        return redirect()->route('all.features')->with([
+            'message' => 'Feature added successfully',
+            'alert'   => 'success'
+        ]);
     }
 
-    // Insert into DB
-    Feature::create([
-        'title'        => $request->title,
-        'description'  => $request->description,
-        'image'        => $save_url,
-    ]);
+    public function UpdateFeature(Request $request, $id)
+    {
+        $features = Feature::findOrFail($id);
 
-    return redirect()->route('all.features')->with([
-        'message' => 'Feature added successfully',
-        'alert'   => 'success'
-    ]);
-}
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $ext = strtolower($image->getClientOriginalExtension());
 
-public function UpdateFeature(Request $request, $id)
-{
-    $features = Feature::findOrFail($id);
+            // If SVG → just move file (no resize)
+            if ($ext === 'svg') {
+                $name_gen = hexdec(uniqid()) . '.svg';
+                $image->move(public_path('upload/features/'), $name_gen);
 
-    if ($request->file('image')) {
-        $image = $request->file('image');
-        $ext = strtolower($image->getClientOriginalExtension());
+                $features->image = 'upload/features/' . $name_gen;
+            } else {
+                // Normal image → resize with Intervention
+                $manager = new ImageManager(new Driver());
+                $name_gen = hexdec(uniqid()) . '.' . $ext;
+                $img = $manager->read($image)->resize(60, 60);
+                $img->save(public_path('upload/features/' . $name_gen));
 
-        // If SVG → just move file (no resize)
-        if ($ext === 'svg') {
-            $name_gen = hexdec(uniqid()) . '.svg';
-            $image->move(public_path('upload/features/'), $name_gen);
-
-            $features->image = 'upload/features/' . $name_gen;
-        } else {
-            // Normal image → resize with Intervention
-            $manager = new ImageManager(new Driver());
-            $name_gen = hexdec(uniqid()) . '.' . $ext;
-            $img = $manager->read($image)->resize(60, 60);
-            $img->save(public_path('upload/features/' . $name_gen));
-
-            $features->image = 'upload/features/' . $name_gen;
+                $features->image = 'upload/features/' . $name_gen;
+            }
         }
+
+        $features->title = $request->title;
+        $features->description = $request->description;
+        $features->save();
+
+        return redirect()->route('all.features')->with([
+            'message' => 'Features updated successfully',
+            'alert' => 'success'
+        ]);
     }
-
-    $features->title = $request->title;
-    $features->description = $request->description;
-    $features->save();
-
-    return redirect()->route('all.features')->with([
-        'message' => 'Features updated successfully',
-        'alert' => 'success'
-    ]);
-}
     public function EditFeature($id)
     {
         $features = Feature::find($id);
@@ -125,4 +125,3 @@ public function UpdateFeature(Request $request, $id)
         return redirect()->back()->with('message', 'Feature Deleted Successfully');
     }
 }
-
