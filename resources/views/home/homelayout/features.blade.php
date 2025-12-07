@@ -1,6 +1,4 @@
-  <div class="lonyo-content-shape1">
-      <img src="{{ asset('frontend/assets/images/shape/shape1.svg') }}" alt="">
-  </div>
+
   <div class="lonyo-section-padding2 position-relative">
       <div class="container">
           <div class="lonyo-section-title center">

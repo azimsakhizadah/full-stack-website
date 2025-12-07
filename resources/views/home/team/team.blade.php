@@ -27,23 +27,20 @@
       <div class="lonyo-section-title max-w616">
         <h2>Meet our brilliant team members</h2>
       </div>
-      <div class="row">
-        @foreach ($team_members as $member)
-             <div class="col-lg-3 col-md-6">
-          <div class="lonyo-team-wrap" data-aos="fade-up" data-aos-duration="500">
-            <div class="lonyo-team-thumb">
-              <a href="#"><img src="{{ $member->image}}" alt=""></a>
+      <div class="row g-4">
+    @foreach ($team_members as $member)
+        <div class="col-lg-3 col-md-6">
+            <div class="text-center border-0">
+                <img src="{{ $member->image }}" alt="{{ $member->name }}">
+                <div class="card-body">
+                    <a href="{{route('team.profile', $member->id )}}" class="fw-bold mb-1">{{ $member->name }}</a>
+                    <p class="text-primary fw-semibold">{{ $member->position }}</p>
+                </div>
             </div>
-            <div class="lonyo-team-content2">
-              <a href="#">
-                <h6> {{$member->name}}</h6>
-              </a>
-              <p>{{$member->position}}</p>
-            </div>
-          </div>
         </div>
-        @endforeach
-      </div>
+    @endforeach
+</div>
+
     </div>
   </section>
 

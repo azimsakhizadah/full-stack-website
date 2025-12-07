@@ -141,4 +141,11 @@ class TeamController extends Controller
 
         return redirect()->back()->with('message', 'Team_members Deleted Successfully');
     }
+
+    // team profile
+
+    public function TeamProfile($id) {
+        $team_profile = Team::FindOrFail($id);
+        return view('home.team.team_profile', compact('team_profile'));
+    }
 }

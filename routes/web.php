@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\TitleContoller as BackendTitleContoller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\TitleContoller;
 use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\ServicesController;
 use App\Http\Controllers\Frontend\TeamController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -122,4 +123,8 @@ route::get('/about', [HomeController::class, 'AboutPage'])->name('about');
 
 // team member
 route::get('/team', [TeamController::class, 'TeamPage'])->name('team');
+route::get('/team/profile/{id}', [TeamController::class, 'TeamProfile'])->name('team.profile');
 
+// services controller
+
+route::get('/services', [ServicesController::class, 'ServicesPage'])->name('services');

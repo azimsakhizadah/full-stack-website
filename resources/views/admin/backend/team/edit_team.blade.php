@@ -42,8 +42,7 @@
 
                                         <div class="mb-3">
                                             <label class="form-label">Biography</label>
-                                            <input type="text" id="bio" name="bio" class="form-control"
-                                                value="{{ $team_members->bio }}">
+                                            <textarea class="form-control" type='text' name="bio" id="bio" cols="30" rows="10" value="{{ $team_members->bio }}"></textarea>
                                         </div>
 
                                         <div class="mb-3">
