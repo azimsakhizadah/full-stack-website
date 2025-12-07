@@ -186,137 +186,25 @@
                         </ul>
                     </div>
                 </li>
-                
 
 
-                <li class="menu-title mt-2">General</li>
 
-                <li>
-                    <a href="#sidebarAdvancedUI" data-bs-toggle="collapse">
-                        <i data-feather="package"></i>
-                        <span> Components </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarAdvancedUI">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="ui-accordions.html" class="tp-link">Accordions</a>
-                            </li>
-                            <li>
-                                <a href="ui-alerts.html" class="tp-link">Alerts</a>
-                            </li>
-                            <li>
-                                <a href="ui-badges.html" class="tp-link">Badges</a>
-                            </li>
-                            <li>
-                                <a href="ui-breadcrumb.html" class="tp-link">Breadcrumb</a>
-                            </li>
-                            <li>
-                                <a href="ui-buttons.html" class="tp-link">Buttons</a>
-                            </li>
-                            <li>
-                                <a href="ui-cards.html" class="tp-link">Cards</a>
-                            </li>
-                            <li>
-                                <a href="ui-collapse.html" class="tp-link">Collapse</a>
-                            </li>
-                            <li>
-                                <a href="ui-dropdowns.html" class="tp-link">Dropdowns</a>
-                            </li>
-                            <li>
-                                <a href="ui-video.html" class="tp-link">Embed Video</a>
-                            </li>
-                            <li>
-                                <a href="ui-grid.html" class="tp-link">Grid</a>
-                            </li>
-                            <li>
-                                <a href="ui-images.html" class="tp-link">Images</a>
-                            </li>
-                            <li>
-                                <a href="ui-list.html" class="tp-link">List Group</a>
-                            </li>
-                            <li>
-                                <a href="ui-modals.html" class="tp-link">Modals</a>
-                            </li>
-                            <li>
-                                <a href="ui-placeholders.html" class="tp-link">Placeholders</a>
-                            </li>
-                            <li>
-                                <a href="ui-pagination.html" class="tp-link">Pagination</a>
-                            </li>
-                            <li>
-                                <a href="ui-popovers.html" class="tp-link">Popovers</a>
-                            </li>
-                            <li>
-                                <a href="ui-progress.html" class="tp-link">Progress</a>
-                            </li>
-                            <li>
-                                <a href="ui-scrollspy.html" class="tp-link">Scrollspy</a>
-                            </li>
-                            <li>
-                                <a href="ui-spinners.html" class="tp-link">Spinners</a>
-                            </li>
-                            <li>
-                                <a href="ui-tabs.html" class="tp-link">Tabs</a>
-                            </li>
-                            <li>
-                                <a href="ui-tooltips.html" class="tp-link">Tooltips</a>
-                            </li>
-                            <li>
-                                <a href="ui-typography.html" class="tp-link">Typography</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="widgets.html" class="tp-link">
-                        <i data-feather="aperture"></i>
-                        <span> Widgets </span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#sidebarAdvancedUI" data-bs-toggle="collapse">
-                        <i data-feather="cpu"></i>
-                        <span> Extended UI </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarAdvancedUI">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="extended-carousel.html" class="tp-link">Carousel</a>
-                            </li>
-                            <li>
-                                <a href="extended-notifications.html" class="tp-link">Notifications</a>
-                            </li>
-                            <li>
-                                <a href="extended-offcanvas.html" class="tp-link">Offcanvas</a>
-                            </li>
-                            <li>
-                                <a href="extended-range-slider.html" class="tp-link">Range Slider</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
+                  {{-- team memberes section --}}
                 <li>
                     <a href="#sidebarIcons" data-bs-toggle="collapse">
-                        <i data-feather="award"></i>
-                        <span> Icons </span>
+                        <i data-feather="list"></i>
+                        <span> Messages </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarIcons">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="icons-feather.html" class="tp-link">Feather Icons</a>
-                            </li>
-                            <li>
-                                <a href="icons-mdi.html" class="tp-link">Material Design Icons</a>
+                                <a href="{{ route('all.messages') }}" class="tp-link">All Message</a>
                             </li>
                         </ul>
                     </div>
                 </li>
+                
             </ul>
 
         </div>

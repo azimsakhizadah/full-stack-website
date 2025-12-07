@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\TitleContoller as BackendTitleContoller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\TitleContoller;
 use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\ServicesController;
 use App\Http\Controllers\Frontend\TeamController;
 use App\Http\Controllers\HomeController;
@@ -114,6 +115,10 @@ Route::middleware('auth')->group(function () {
         route::get('/delete/team/{id}', 'DeleteTeam')->name('delete.team');
     });
 
+     Route::get('/all/messages', [ContactController::class, 'AllMessages'])->name('all.messages');
+     Route::get('/delete/message/{id}', [ContactController::class, 'DeleteMessages'])->name('delete.message');
+
+
 
 });
 
@@ -128,3 +133,8 @@ route::get('/team/profile/{id}', [TeamController::class, 'TeamProfile'])->name('
 // services controller
 
 route::get('/services', [ServicesController::class, 'ServicesPage'])->name('services');
+
+
+// contact controller
+route::get('/contact', [ContactController::class, 'ContactPage'])->name('contact');
+route::post('/send/message', [ContactController::class, 'SendMessage'])->name('send.message');
