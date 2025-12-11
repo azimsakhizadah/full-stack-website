@@ -100,4 +100,14 @@ class HomeController extends Controller
     public function TeamPage(){
         return view('home.team.team');
     }
+
+    // portfolio page
+    public function PortfolioPage(){
+        return view('home.portfolio.portfolio');
+    }
+
+    // portfolio details 
+    public function PortfolioDetails() {
+        return view('home.portfolio.portfolio_details');
+    }
 }

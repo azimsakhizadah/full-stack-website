@@ -5,16 +5,17 @@ use App\Http\Controllers\Backend\FaqController;
 use App\Http\Controllers\Backend\FeaturesContoller;
 use App\Http\Controllers\Backend\FeaturesController;
 use App\Http\Controllers\Backend\IntrosController;
+use App\Http\Controllers\Backend\PortfolioController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\SliderController;
-use App\Http\Controllers\Backend\TitleContoller as BackendTitleContoller;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\TitleContoller;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\ServicesController;
 use App\Http\Controllers\Frontend\TeamController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Backend\PortfolioCategoryController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -61,7 +62,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/all/features', 'AllFeature')->name('all.features');
         route::get('/add/feature', 'AddFeatureForm')->name('add.feature.form');
         route::post('/add/feature', 'AddFeature')->name('add.feature');
-         route::get('/edit/feature/{id}', 'EditFeature')->name('edit.feature');
+        route::get('/edit/feature/{id}', 'EditFeature')->name('edit.feature');
         route::post('/update/feature/{id}', 'UpdateFeature')->name('update.feature');
         route::get('/delete/feature/{id}', 'DeleteFeature')->name('delete.feature');
     });
@@ -77,12 +78,12 @@ Route::middleware('auth')->group(function () {
     });
 
     // our Home controller
-     Route::controller(HomeController::class)->group(function () {
+    Route::controller(HomeController::class)->group(function () {
         // portfolio controller
         Route::get('/get/usability', 'GetUsability')->name('get.usability');
         Route::post('/get/usability/{id}', 'UpdateUsability')->name('update.usability');
         // cta controller
-         Route::get('/get/cta', 'GetCta')->name('get.cta');
+        Route::get('/get/cta', 'GetCta')->name('get.cta');
         Route::post('/get/cta/{id}', 'UpdateCta')->name('update.cta');
     });
 
@@ -97,7 +98,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // FAQ controller 
-    Route::controller(FaqController::class)->group(function(){
+    Route::controller(FaqController::class)->group(function () {
         route::get('/all/faq', 'AllFaq')->name('all.faq');
         route::get('/add/faq', 'AddFaqForm')->name('add.faq.form');
         route::post('/add/faq', 'AddFaq')->name('add.faq');
@@ -106,20 +107,30 @@ Route::middleware('auth')->group(function () {
         route::get('/delete/faq/{id}', 'DeleteFaq')->name('delete.faq');
     });
 
-     Route::controller(TeamController::class)->group(function () {
+    Route::controller(TeamController::class)->group(function () {
         Route::get('/all/team', 'AllTeam')->name('all.team');
         route::get('/add/team', 'AddTeamForm')->name('add.team.form');
         route::post('/add/team', 'AddTeam')->name('add.team');
-         route::get('/edit/team/{id}', 'EditTeam')->name('edit.team');
+        route::get('/edit/team/{id}', 'EditTeam')->name('edit.team');
         route::post('/update/team/{id}', 'UpdateTeam')->name('update.team');
         route::get('/delete/team/{id}', 'DeleteTeam')->name('delete.team');
     });
 
-     Route::get('/all/messages', [ContactController::class, 'AllMessages'])->name('all.messages');
-     Route::get('/delete/message/{id}', [ContactController::class, 'DeleteMessages'])->name('delete.message');
+    Route::get('/all/messages', [ContactController::class, 'AllMessages'])->name('all.messages');
+    Route::get('/delete/message/{id}', [ContactController::class, 'DeleteMessages'])->name('delete.message');
 
+     Route::controller(PortfolioController::class)->group(function () {
+        Route::get('/all/portfolios', 'AllPortfolios')->name('all.portfolios');
+        route::get('/add/portfolio', 'AddPortfolioForm')->name('add.portfolio.form');
+        route::post('/add/portfolio', 'AddPortfolio')->name('add.portfolio');
+        route::get('/edit/portfolio/{id}', 'EditPortfolio')->name('edit.portfolio');
+        route::post('/update/portfolio/{id}', 'UpdatePortfolio')->name('update.portfolio');
+        route::get('/delete/portfolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
+    });
+    
+    
 
-
+    Route::resource('portfolio-categories', PortfolioCategoryController::class);
 });
 
 // frontend controllers
@@ -138,3 +149,9 @@ route::get('/services', [ServicesController::class, 'ServicesPage'])->name('serv
 // contact controller
 route::get('/contact', [ContactController::class, 'ContactPage'])->name('contact');
 route::post('/send/message', [ContactController::class, 'SendMessage'])->name('send.message');
+
+// portfolio controller
+
+// frontend portfolio pages
+Route::get('/portfolio', [HomeController::class, 'PortfolioPage'])->name('portfolio');
+Route::get('/portfolio/details', [HomeController::class, 'PortfolioDetails'])->name('portfolios.details');

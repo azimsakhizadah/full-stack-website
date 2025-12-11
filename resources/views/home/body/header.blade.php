@@ -26,7 +26,7 @@
                                   <a href="{{route('services')}}">Services</a>
                               </li>
                               <li>
-                                  <a href="#">Portfolio</a>
+                                  <a href="{{route('portfolio')}}">Portfolio</a>
                               </li>
                               <li>
                                   <a href="#">Blog</a>

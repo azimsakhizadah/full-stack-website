@@ -5,7 +5,7 @@
         <div id="sidebar-menu">
 
             <div class="logo-box">
-                <a href="{{ route('dashboard')}}" class="logo logo-light">
+                <a href="{{ route('dashboard') }}" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
@@ -13,7 +13,7 @@
                         <img src="{{ asset('backend/assets/images/logo-light.png') }}" alt="" height="24">
                     </span>
                 </a>
-                <a href="{{ route('home')}}" class="logo logo-dark">
+                <a href="{{ route('home') }}" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
@@ -37,7 +37,7 @@
 
                 <li class="menu-title">Pages</li>
 
-                     {{-- Slider section --}}
+                {{-- Slider section --}}
                 <li>
                     <a href="#sidebarDashboards" data-bs-toggle="collapse">
                         <i data-feather="alert-octagon"></i>
@@ -54,7 +54,7 @@
                 </li>
 
 
-                     {{-- features section --}}
+                {{-- features section --}}
                 <li>
                     <a href="#sidebarAuth" data-bs-toggle="collapse">
                         <i data-feather="users"></i>
@@ -73,7 +73,7 @@
                     </div>
                 </li>
 
-                 {{-- about us section --}}
+                {{-- about us section --}}
                 <li>
                     <a href="#sidebarError" data-bs-toggle="collapse">
                         <i data-feather="alert-octagon"></i>
@@ -132,7 +132,7 @@
                 </li>
 
 
-                 {{-- faq section --}}
+                {{-- faq section --}}
                 <li>
                     <a href="#sidebarAdvancedUI" data-bs-toggle="collapse">
                         <i data-feather="list"></i>
@@ -150,9 +150,9 @@
                         </ul>
                     </div>
                 </li>
-                
 
-                  {{-- CTA section --}}
+
+                {{-- CTA section --}}
                 <li>
                     <a href="#sidebarIcons" data-bs-toggle="collapse">
                         <i data-feather="list"></i>
@@ -168,7 +168,7 @@
                     </div>
                 </li>
 
-                  {{-- team memberes section --}}
+                {{-- team memberes section --}}
                 <li>
                     <a href="#sidebarIcons" data-bs-toggle="collapse">
                         <i data-feather="list"></i>
@@ -189,7 +189,7 @@
 
 
 
-                  {{-- team memberes section --}}
+                {{-- team memberes section --}}
                 <li>
                     <a href="#sidebarIcons" data-bs-toggle="collapse">
                         <i data-feather="list"></i>
@@ -204,7 +204,33 @@
                         </ul>
                     </div>
                 </li>
-                
+
+                {{-- team memberes section --}}
+                <li>
+                    <a href="#sidebarIcons" data-bs-toggle="collapse">
+                        <i data-feather="list"></i>
+                        <span> Portfolio </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarIcons">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.portfolios') }}" class="tp-link">All Portfolios</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.portfolio') }}" class="tp-link">Add Portfolio</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('portfolio-categories.index') }}" class="tp-link">All
+                                    Categories</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('portfolio-categories.create') }}" class="tp-link">Add Category</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
             </ul>
 
         </div>
