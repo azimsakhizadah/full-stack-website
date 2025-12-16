@@ -29,7 +29,7 @@
                                   <a href="{{route('portfolio')}}">Portfolio</a>
                               </li>
                               <li>
-                                  <a href="#">Blog</a>
+                                  <a href="{{route('blog')}}">Blog</a>
                               </li>
                               <li>
                                   <a href="{{route('contact')}}">Contact</a>

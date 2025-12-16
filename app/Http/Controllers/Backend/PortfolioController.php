@@ -18,7 +18,7 @@ class PortfolioController extends Controller
     }
 
     public function AddPortfolioForm() {
-    $categories = PortfolioCategory::all();  // <-- Add this line
+    $categories = PortfolioCategory::all(); 
     return view('admin.backend.portfolio.add_portfolio', compact('categories'));
 }
 

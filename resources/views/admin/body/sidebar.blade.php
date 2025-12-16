@@ -231,6 +231,33 @@
                     </div>
                 </li>
 
+
+                {{-- Blog section --}}
+                <li>
+                    <a href="#sidebarIcons" data-bs-toggle="collapse">
+                        <i data-feather="list"></i>
+                        <span> Posts </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarIcons">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.posts') }}" class="tp-link">All Posts</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.post') }}" class="tp-link">Add Post</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('post-categories.index') }}" class="tp-link">All
+                                    Categories</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('post-categories.create') }}" class="tp-link">Add Category</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
             </ul>
 
         </div>

@@ -110,4 +110,5 @@ class HomeController extends Controller
     public function PortfolioDetails() {
         return view('home.portfolio.portfolio_details');
     }
+
 }

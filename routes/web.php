@@ -15,6 +15,9 @@ use App\Http\Controllers\Frontend\ServicesController;
 use App\Http\Controllers\Frontend\TeamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\PortfolioCategoryController;
+use App\Http\Controllers\Backend\PostCategoryController;
+use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -127,10 +130,22 @@ Route::middleware('auth')->group(function () {
         route::post('/update/portfolio/{id}', 'UpdatePortfolio')->name('update.portfolio');
         route::get('/delete/portfolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
     });
-    
-    
 
     Route::resource('portfolio-categories', PortfolioCategoryController::class);
+
+
+    Route::controller(PostController::class)->group(function () {
+        Route::get('/all/posts', 'AllPosts')->name('all.posts');
+        route::get('/add/post', 'AddPostForm')->name('add.post.form');
+        route::post('/add/post', 'AddPost')->name('add.post');
+        route::get('/edit/post/{id}', 'EditPost')->name('edit.post');
+        route::post('/update/post/{id}', 'UpdatePost')->name('update.post');
+        route::get('/delete/post/{id}', 'DeletePost')->name('delete.post');
+    });
+
+    Route::resource('post-categories', PostCategoryController::class);
+
+    
 });
 
 // frontend controllers
@@ -155,3 +170,9 @@ route::post('/send/message', [ContactController::class, 'SendMessage'])->name('s
 // frontend portfolio pages
 Route::get('/portfolio', [HomeController::class, 'PortfolioPage'])->name('portfolio');
 Route::get('/portfolio/details', [HomeController::class, 'PortfolioDetails'])->name('portfolios.details');
+
+// blog
+Route::get('/blog', [BlogController::class, 'BlogPage'])->name('blog');
+Route::get('/blog/{slug}', [BlogController::class, 'single'])->name('single.blog');
+Route::get('/blog/category/{id}', [BlogController::class, 'category'])->name('blog.category');
+Route::get('/blog/search', [BlogController::class, 'search'])->name('blog.search');
