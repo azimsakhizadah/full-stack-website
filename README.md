@@ -28,6 +28,6 @@ Image Handling: File Uploads & Storage
 ### Admin Dashboard
 <img src="screenshots/dashboard.png" width="700">
 
-### Post Management
+### Home Page
 <img src="screenshots/home.png" width="700">
 
