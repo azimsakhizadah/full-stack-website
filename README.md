@@ -19,3 +19,15 @@ Database: MySQL
 Authentication: Laravel Auth
 
 Image Handling: File Uploads & Storage
+
+## Project Screenshots
+
+### Login Page
+<img src="screenshots/login.png" width="500">
+
+### Admin Dashboard
+<img src="screenshots/dashboard.png" width="700">
+
+### Post Management
+<img src="screenshots/home.png" width="700">
+
